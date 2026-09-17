@@ -421,7 +421,7 @@
 
         <div class="nav-links">
             <a href="/">Beranda</a>
-            <a href="/informasi">Informasi</a>
+            <a href="/#kondisi-udara">Informasi</a>
             <a href="/tokoh">Tokoh</a>
             <a href="/profil">Profilku</a>
         </div>
