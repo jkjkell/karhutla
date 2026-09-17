@@ -753,7 +753,7 @@
 
         <div class="menu">
             <a href="/">Beranda</a>
-            <a href="/informasi">Informasi</a>
+            <a href="#kondisi-udara">Informasi</a>
             <a href="/tokoh">Tokoh</a>
             <a href="/profil">Profilku</a>
         </div>
@@ -791,10 +791,10 @@
                 serta pentingnya menjaga hutan Kalimantan.
             </p>
 
-            <a href="/informasi" class="button">
+            <a href="#kondisi-udara" class="button">
                 Jelajahi Informasi →
             </a>
-
+    
         </div>
 
         <div class="scroll">
@@ -803,7 +803,7 @@
 
     </section>
 
-    <section class="air-section">
+    <section class="air-section" id="kondisi-udara">
 
         <div class="air-photo"></div>
 

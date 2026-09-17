@@ -9,10 +9,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/informasi', function () {
-    return view('informasi');
-})->name('informasi');
-
 Route::get('/tokoh', [TokohController::class, 'index'])
     ->name('tokoh');
 
