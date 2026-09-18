@@ -29,14 +29,7 @@ class TokohController extends Controller
             'sumber' => 'nullable|string|max:255',
         ]);
 
-        // Simpan foto
         $foto = $request->file('foto')->store('tokoh', 'public');
-
-        // Admin langsung tampil
-        // User biasa menunggu persetujuan
-        $status = auth()->user()->role === 'admin'
-            ? 'approved'
-            : 'pending';
 
         Tokoh::create([
             'nama' => $request->nama,
@@ -44,16 +37,9 @@ class TokohController extends Controller
             'deskripsi' => $request->deskripsi,
             'link' => $request->link,
             'sumber' => $request->sumber,
-            'status' => $status,
+            'status' => 'pending',
             'user_id' => auth()->id(),
         ]);
-
-        if ($status === 'approved') {
-            return redirect('/tokoh')->with(
-                'success',
-                'Berita berhasil ditambahkan.'
-            );
-        }
 
         return redirect('/tokoh')->with(
             'success',
@@ -61,24 +47,62 @@ class TokohController extends Controller
         );
     }
 
-public function login()
-{
-    return view('login');
-}
+    public function review()
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
 
-public function destroy($id)
-{
-    if (auth()->user()->role !== 'admin') {
-        abort(403);
+        $tokoh = Tokoh::where('status', 'pending')
+            ->latest()
+            ->get();
+
+        return view('admin-tokoh', compact('tokoh'));
     }
 
-    $tokoh = Tokoh::findOrFail($id);
+    public function approve($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
 
-    $tokoh->delete();
+        $tokoh = Tokoh::findOrFail($id);
 
-    return redirect('/tokoh')->with(
-        'success',
-        'Berita berhasil dihapus.'
-    );
-}
+        $tokoh->update([
+            'status' => 'approved',
+        ]);
+
+        return back()->with('success', 'Berita berhasil diterima.');
+    }
+
+    public function reject($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $tokoh = Tokoh::findOrFail($id);
+
+        $tokoh->update([
+            'status' => 'rejected',
+        ]);
+
+        return back()->with('success', 'Berita berhasil ditolak.');
+    }
+
+    public function destroy($id)
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $tokoh = Tokoh::findOrFail($id);
+
+        $tokoh->delete();
+
+        return redirect('/tokoh')->with(
+            'success',
+            'Berita berhasil dihapus.'
+        );
+    }
 }

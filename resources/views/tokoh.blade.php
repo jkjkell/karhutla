@@ -92,53 +92,59 @@
             max-width: 850px;
         }
 
-        .add-news-btn {
-            flex-shrink: 0;
+        .add-news-btn,
+        .admin-news-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-            padding: 16px 24px;
+            height: 50px;
+            padding: 0 24px;
 
-            background: transparent;
-            color: white;
+            box-sizing: border-box;
+            border-radius: 6px;
 
-            border: 1px solid #444;
-
-            font-size: 14px;
+            text-decoration: none;
+            font-size: 12px;
             font-weight: bold;
             letter-spacing: 1px;
-
-            cursor: pointer;
-
-            transition: 0.3s ease;
         }
 
-        .add-news-btn:hover {
-            background: #ff5a1f;
-            border-color: #ff5a1f;
+        .add-news-btn {
+            border: 1px solid #444;
+            color: white;
+            background: transparent;
         }
 
+        .admin-news-btn {
+            border: 1px solid #ff6b2c;
+            color: #ff6b2c;
+            background: transparent;
+        }
+        
         /* CARD AREA */
 
-.carousel-wrapper {
-    width: 100%;
-    overflow: hidden;
-    padding: 40px 0 100px;
+        .carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0 100px;
 
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 8%,
-        black 92%,
-        transparent 100%
-    );
+            -webkit-mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
 
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 8%,
-        black 92%,
-        transparent 100%
-    );
-}
+            mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+        }
 
         .carousel {
             display: flex;
@@ -410,6 +416,13 @@
             color: white;
         }
 
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
     </style>
 </head>
 
@@ -451,9 +464,19 @@
 
             </div>
 
-            <button class="add-news-btn" onclick="openRegister()">
-                + TAMBAH BERITA
-            </button>
+            <div class="header-buttons">
+
+                <a href="{{ route('tokoh.create') }}" class="add-news-btn">
+                    + TAMBAH BERITA
+                </a>
+
+                @if (auth()->check() && auth()->user()->role === 'admin')
+                    <a href="{{ route('tokoh.review') }}" class="admin-news-btn">
+                        KELOLA BERITA
+                    </a>
+                @endif
+
+            </div>
 
         </div>
 
@@ -525,65 +548,6 @@
 
     @endforeach
 
-</div>
-
-    <!-- POPUP DAFTAR -->
-    <div class="modal" id="registerModal">
-
-        <div class="modal-box">
-
-            <button class="modal-close" onclick="closeRegister()">×</button>
-
-            <div class="eyebrow">
-                KONTRIBUSI
-            </div>
-
-            <h2>Daftarkan akun.</h2>
-
-            <p>
-                Buat akun terlebih dahulu untuk menambahkan berita.
-            </p>
-
-            <form>
-
-                <input
-                    type="text"
-                    placeholder="Username"
-                    required
-                >
-
-                <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                >
-
-                <button type="submit" class="register-submit">
-                    DAFTAR
-                </button>
-
-            </form>
-
-            <div class="login-link">
-                Sudah punya akun?
-                <a href="{{ route('login')}}">Login</a>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script>
-
-    function openRegister() {
-        document.getElementById("registerModal").classList.add("active");
-    }
-
-    function closeRegister() {
-        document.getElementById("registerModal").classList.remove("active");
-    }
-
-    </script>
-        
+</div>       
 </body>
 </html>

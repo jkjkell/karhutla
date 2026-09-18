@@ -26,16 +26,25 @@ Route::post('/login', [LoginController::class, 'login'])
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
+Route::get('/tokoh/tambah', [TokohController::class, 'create'])
+    ->name('tokoh.create');
+
+Route::post('/tokoh/tambah', [TokohController::class, 'store'])
+    ->name('tokoh.store');
+
 Route::middleware('auth')->group(function () {
 
-    Route::get('/tokoh/tambah', [TokohController::class, 'create'])
-        ->name('tokoh.create');
-
-    Route::post('/tokoh/tambah', [TokohController::class, 'store'])
-        ->name('tokoh.store');
-    
     Route::delete('/tokoh/{id}', [TokohController::class, 'destroy'])
         ->name('tokoh.destroy');
+
+    Route::get('/admin/tokoh', [TokohController::class, 'review'])
+        ->name('tokoh.review');
+
+    Route::patch('/admin/tokoh/{id}/approve', [TokohController::class, 'approve'])
+        ->name('tokoh.approve');
+
+    Route::patch('/admin/tokoh/{id}/reject', [TokohController::class, 'reject'])
+        ->name('tokoh.reject');
 
 });
 
