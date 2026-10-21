@@ -512,11 +512,11 @@
             background: linear-gradient(
                 90deg,
                 #0a0a0a 0%,
-                rgba(10, 10, 10, 0.98) 8%,
-                rgba(10, 10, 10, 0.85) 20%,
-                rgba(10, 10, 10, 0.55) 35%,
-                rgba(10, 10, 10, 0.2) 55%,
-                rgba(10, 10, 10, 0) 75%
+                rgba(10, 10, 10, 0.98) 15%,
+                rgba(10, 10, 10, 0.85) 30%,
+                rgba(10, 10, 10, 0.55) 50%,
+                rgba(10, 10, 10, 0.2) 75%,
+                rgba(10, 10, 10, 0) 100%
             );
         }
 
@@ -742,6 +742,130 @@
             }
         }
         
+        /* =========================
+        MOBILE SIDEBAR
+        ========================= */
+
+        .menu-btn {
+            display: none;
+
+            background: none;
+            border: none;
+            color: white;
+
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+
+            width: 280px;
+            height: 100vh;
+
+            background: #111;
+            border-left: 1px solid #292929;
+
+            z-index: 1001;
+
+            padding: 30px;
+
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 60px;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .mobile-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 600;
+
+            padding-bottom: 15px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .mobile-links a:hover {
+            color: #ff5a1f;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+
+            background: none;
+            border: none;
+
+            color: #aaa;
+            font-size: 24px;
+
+            cursor: pointer;
+        }
+
+        .close-menu:hover {
+            color: #ff5a1f;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            z-index: 1000;
+
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+
+        /* =========================
+        MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 20px 25px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            /* Hilangkan navbar desktop */
+            .menu {
+                display: none;
+            }
+
+            /* Tampilkan tombol hamburger */
+            .menu-btn {
+                display: block;
+            }
+        }
+
     </style>
 
 </head>
@@ -751,14 +875,46 @@
     <nav>
         <div class="logo">KARHUTLA</div>
 
+        <!-- Desktop -->
         <div class="menu">
             <a href="/">Beranda</a>
             <a href="#kondisi-udara">Informasi</a>
             <a href="/tokoh">Tokoh</a>
             <a href="/profil">Profilku</a>
         </div>
+
+        <!-- Mobile -->
+        <button class="menu-btn" onclick="openMenu()">
+            ☰
+        </button>
     </nav>
 
+    <!-- SIDEBAR MOBILE -->
+    <div class="mobile-menu" id="mobileMenu">
+
+        <button class="close-menu" onclick="closeMenu()">
+            ×
+        </button>
+
+        <div class="mobile-logo">
+            KARHUTLA
+        </div>
+
+        <div class="mobile-links">
+            <a href="/">Beranda</a>
+            <a href="#kondisi-udara">Informasi</a>
+            <a href="/tokoh">Tokoh</a>
+            <a href="/profil">Profilku</a>
+        </div>
+
+    </div>
+
+    <!-- OVERLAY -->
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        onclick="closeMenu()">
+    </div>    
 
     <section class="hero">
 
@@ -987,6 +1143,18 @@
         </div>
 
     </section>
+
+<script>
+    function openMenu() {
+        document.getElementById('mobileMenu').classList.add('active');
+        document.getElementById('menuOverlay').classList.add('active');
+    }
+
+    function closeMenu() {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('menuOverlay').classList.remove('active');
+    }
+</script>
 
 </body>
 </html>

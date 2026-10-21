@@ -256,28 +256,155 @@
         /* RESPONSIVE */
         @media (max-width: 700px) {
 
+            /* NAVBAR */
             nav {
-                padding: 0 25px;
+                height: auto;
+                min-height: 75px;
+                padding: 20px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .logo {
+                font-size: 25px;
             }
 
             .nav-links {
-                gap: 15px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                gap: 8px;
             }
 
             .nav-links a {
-                font-size: 13px;
+                font-size: 12px;
+                white-space: nowrap;
             }
 
+
+            /* HEADER */
             .tokoh-header {
-                padding: 60px 25px 30px;
+                padding: 55px 20px 35px;
             }
 
+            .header-content {
+                display: block;
+            }
+
+            .header-text {
+                max-width: 100%;
+            }
+
+            .eyebrow {
+                font-size: 11px;
+                letter-spacing: 4px;
+                margin-bottom: 15px;
+            }
+
+            .tokoh-header h1 {
+                font-size: clamp(48px, 15vw, 70px);
+                line-height: 0.95;
+                margin-bottom: 22px;
+            }
+
+            .tokoh-header p {
+                font-size: 15px;
+                line-height: 1.6;
+                max-width: 100%;
+            }
+
+
+            /* TOMBOL */
+            .header-buttons {
+                margin-top: 30px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .add-news-btn,
+            .admin-news-btn {
+                width: 100%;
+                height: 48px;
+                font-size: 11px;
+            }
+
+
+            /* CAROUSEL */
+            .carousel-wrapper {
+                padding: 25px 0 70px;
+            }
+
+            .carousel {
+                gap: 15px;
+                animation-duration: 30s;
+            }
+
+
+            /* CARD */
             .tokoh-card {
-                width: 280px;
+                width: 260px;
             }
 
             .tokoh-photo {
-                height: 340px;
+                height: 320px;
+            }
+
+            .tokoh-info {
+                padding: 20px;
+            }
+
+            .tokoh-info h2 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+
+            .tokoh-info p {
+                font-size: 14px;
+                line-height: 1.6;
+                min-height: 68px;
+            }
+
+
+            /* MORE INFO */
+            .more-info {
+                margin-top: 20px;
+                padding-top: 15px;
+                font-size: 12px;
+            }
+
+            .source-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 17px;
+            }
+
+
+            /* HAPUS */
+            .delete-btn {
+                min-height: 42px;
+                font-size: 10px;
+            }
+
+
+            /* MODAL */
+            .modal-box {
+                width: calc(100% - 35px);
+                padding: 30px 25px;
+            }
+
+            .modal-box h2 {
+                font-size: 32px;
+            }
+
+            .modal-box p {
+                font-size: 14px;
+            }
+
+            .modal-box input {
+                padding: 13px;
             }
         }
 
@@ -423,12 +550,178 @@
             flex-wrap: wrap;
         }
 
+        /* =========================
+        MOBILE SIDEBAR
+        ========================= */
+
+        .menu-btn {
+            display: none;
+
+            background: none;
+            border: none;
+            color: white;
+
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* SIDEBAR HP */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 280px;
+            height: 100vh;
+
+            background: #111;
+            border-right: 1px solid #292929;
+
+            z-index: 1001;
+
+            padding: 30px;
+
+            transform: translateX(-100%);
+            transition: transform 0.35s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* OVERLAY */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            z-index: 1000;
+
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* LOGO SIDEBAR */
+        .mobile-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 60px;
+        }
+
+        /* LINK SIDEBAR */
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .mobile-links a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 600;
+
+            padding-bottom: 15px;
+            border-bottom: 1px solid #292929;
+        }
+
+        .mobile-links a:hover {
+            color: #ff5a1f;
+        }
+
+        /* TOMBOL X */
+        .close-menu {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+
+            background: none;
+            border: none;
+
+            color: #aaa;
+            font-size: 24px;
+
+            cursor: pointer;
+        }
+
+        .close-menu:hover {
+            color: #ff5a1f;
+        }
+
+
+        /* =========================
+        HP
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                height: 75px;
+                padding: 0 25px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            /* Hilangkan navbar desktop */
+            .nav-links {
+                display: none;
+            }
+
+            /* Tampilkan hamburger */
+            .menu-btn {
+                display: block;
+            }
+
+            .tokoh-header {
+                padding: 55px 25px 30px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .tokoh-header h1 {
+                font-size: 55px;
+            }
+
+            .tokoh-header p {
+                font-size: 16px;
+            }
+
+            .header-buttons {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .add-news-btn,
+            .admin-news-btn {
+                width: 100%;
+            }
+
+            .tokoh-card {
+                width: 280px;
+            }
+
+            .tokoh-photo {
+                height: 340px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <nav>
         <div class="logo">KARHUTLA</div>
 
@@ -438,7 +731,30 @@
             <a href="/tokoh">Tokoh</a>
             <a href="/profil">Profilku</a>
         </div>
+
+        <button class="menu-btn" onclick="openMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <button class="close-menu" onclick="closeMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="mobile-logo">KARHUTLA</div>
+
+        <div class="mobile-links">
+            <a href="/">Beranda</a>
+            <a href="/#kondisi-udara">Informasi</a>
+            <a href="/tokoh">Tokoh</a>
+            <a href="/profil">Profilku</a>
+        </div>
+
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 
     <!-- HEADER -->
@@ -547,6 +863,18 @@
         </div>
 
     @endforeach
+
+<script>
+    function openMenu() {
+        document.getElementById('mobileMenu').classList.add('active');
+        document.getElementById('menuOverlay').classList.add('active');
+    }
+
+    function closeMenu() {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('menuOverlay').classList.remove('active');
+    }
+</script>
 
 </div>       
 </body>
