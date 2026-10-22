@@ -40,17 +40,6 @@
             letter-spacing: 1px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 45px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
         .nav-links a:hover {
             color: #ff5a1f;
         }
@@ -258,12 +247,13 @@
 
             /* NAVBAR */
             nav {
-                height: auto;
+                height: 75px;
                 min-height: 75px;
-                padding: 20px 20px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
+                padding: 0 25px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0;
             }
 
             .logo {
@@ -678,6 +668,7 @@
             /* Tampilkan hamburger */
             .menu-btn {
                 display: block;
+                margin-left: auto;
             }
 
             .tokoh-header {
