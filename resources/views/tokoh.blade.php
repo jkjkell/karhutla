@@ -569,19 +569,19 @@
         .mobile-menu {
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0;
 
             width: 280px;
             height: 100vh;
 
             background: #111;
-            border-right: 1px solid #292929;
+            border-left: 1px solid #292929;
 
             z-index: 1001;
 
             padding: 30px;
 
-            transform: translateX(-100%);
+            transform: translateX(100%);
             transition: transform 0.35s ease;
         }
 
@@ -610,6 +610,7 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 60px;
+            padding-right: 35px;
         }
 
         /* LINK SIDEBAR */
